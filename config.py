@@ -6,4 +6,4 @@ class config():
         self.conf = dict(line.strip().split('=') for line in open(file))
 
     def off_target(self):
-        return bool(self.conf["off-target"])
+        return self.conf["off-target"] == "True"
