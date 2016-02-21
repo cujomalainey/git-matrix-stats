@@ -2,6 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 import sys
 import os
 from config import config
+from time import sleep
 
 try:
     conf = config('config.txt')
@@ -39,14 +40,14 @@ class drawer():
         font = ImageFont.load(os.path.dirname(os.path.realpath(__file__)) +
                               '/helvR08.pil')
         fontYoffset = -2  # Move up a couple lines so descenders aren't cropped
-        draw.text((0, 0 + fontYoffset), "cujomalainey", font=font,
-                  fill=(255, 255, 255))
-        draw.text((0, 8 + fontYoffset), "Tamarabyte", font=font,
-                  fill=(255, 255, 255))
+        draw.text((45, 0 + fontYoffset), "Tamarabyte", font=font,
+                  fill=(50, 50, 50))
+        draw.text((0, 0 + fontYoffset), "cujomalainey ", font=font,
+                  fill=(50, 50, 50))
         draw.text((0, 16 + fontYoffset), "gantonious", font=font,
-                  fill=(255, 255, 255))
+                  fill=(50, 50, 50))
         draw.text((0, 24 + fontYoffset), "JesseFarebro", font=font,
-                  fill=(255, 255, 255))
+                  fill=(50, 50, 50))
         self.matrix.SetImage(self.image if conf.off_target() else
                              self.image.im.id, 0, 0)
         try:
