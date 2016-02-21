@@ -33,15 +33,22 @@ class drawer():
             self.main()
 
     def main(self):
+        self.image = Image.new('RGB', (128, 32))
         image = Image.open('resources/invertocat.png')
-        draw = ImageDraw.Draw(image)
+        draw = ImageDraw.Draw(self.image)
         font = ImageFont.load(os.path.dirname(os.path.realpath(__file__)) +
                               '/helvR08.pil')
         fontYoffset = -2  # Move up a couple lines so descenders aren't cropped
-        for i in range(0, 4):
-            draw.text((0, i*8 + fontYoffset), "BLOAT!!", font=font,
-                      fill=(255, 0, 0))
-        self.matrix.SetImage(image, 48, 0)
+        draw.text((0, 0 + fontYoffset), "cujomalainey", font=font,
+                  fill=(255, 255, 255))
+        draw.text((0, 8 + fontYoffset), "Tamarabyte", font=font,
+                  fill=(255, 255, 255))
+        draw.text((0, 16 + fontYoffset), "gantonious", font=font,
+                  fill=(255, 255, 255))
+        draw.text((0, 24 + fontYoffset), "JesseFarebro", font=font,
+                  fill=(255, 255, 255))
+        self.matrix.SetImage(self.image if conf.off_target() else
+                             self.image.im.id, 0, 0)
         try:
             while self.alive:
                 pass
