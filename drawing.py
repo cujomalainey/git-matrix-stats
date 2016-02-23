@@ -10,14 +10,14 @@ import os
 import time
 from predict import predict
 # from rgbmatrix import Adafruit_RGBmatrix
-from matrixtoolkit import display
+from matrixtoolkit import Adafruit_RGBmatrix
 
 
 class test():
 
     def __init__(self):
-        self.matrix = display(self.run, self.kill, 6, (128, 32))
-        self.matrix.run()
+        self.matrix = Adafruit_RGBmatrix(32, 2)
+        self.matrix.start(self.run, self.kill)
 
     def kill(self):
         pass
