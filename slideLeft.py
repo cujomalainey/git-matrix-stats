@@ -1,5 +1,6 @@
 from drawable import drawable
 from PIL import Image, ImageDraw
+import time
 
 
 class slideLeft(drawable):
@@ -26,11 +27,11 @@ class slideLeft(drawable):
         for line in self.data:
             if line["x"] > (int(i/4))*64:
                 self.done = False
+                self.time = time.time()
                 line["x"] -= 1
                 break
             i += 1
-        if self.done is True and self.delay > 0:
-            self.delay -= 1
+        if self.done is True and time.time() - self.time < 10:
             self.done = False
         i = 1
         for line in self.data:
