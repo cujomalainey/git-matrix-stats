@@ -14,10 +14,9 @@ class slideLeft(drawable):
         self.done = False
         self.font = font
         self.delay = 80
-        self.dummy_data = ["cujomalainey1", "cujomalainey2",
-                           "cujomalainey3", "cujomalainey4",
-                           "cujomalainey5", "cujomalainey6",
-                           "cujomalainey7", "cujomalainey8"]
+        self.feed = feed
+        self.data = []
+        self.data_list = []
         self.update()
 
     def nextFrame(self):
@@ -41,7 +40,8 @@ class slideLeft(drawable):
             i += 1
 
     def update(self):
-        self.data = [{"text": text, "x": 129} for text in self.dummy_data]
+        self.data_list = self.feed.fetch()
+        self.data = [{"text": text[0:16], "x": 129} for text in self.data_list]
         i = 0
         for line in self.data:
             line["y"] = 8 * (i % 4)

@@ -4,6 +4,8 @@ import os
 from config import config
 from time import sleep
 from slideLeft import slideLeft
+from github import Github
+from initials import *
 
 try:
     conf = config('config.txt')
@@ -40,28 +42,18 @@ class drawer():
         draw = ImageDraw.Draw(self.image)
         font = ImageFont.load(os.path.dirname(os.path.realpath(__file__)) +
                               '/helvR08.pil')
-        s = slideLeft(None, font)
-        # draw.text((45, 0 + fontYoffset), "Tamarabyte", font=font,
-        #           fill=(50, 50, 50))
-        # draw.text((0, 0 + fontYoffset), "cujomalainey ", font=font,
-        #           fill=(50, 50, 50))
-        # draw.text((0, 16 + fontYoffset), "gantonious", font=font,
-        #           fill=(50, 50, 50))
-        # draw.text((0, 24 + fontYoffset), "JesseFarebro", font=font,
-        #           fill=(50, 50, 50))
-        # for letter in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ":
-        #     self.image = Image.new('RGB', (128, 32))
-        #     draw = ImageDraw.Draw(self.image)
-        #     draw.text((0, 0 + fontYoffset), letter + " " + letter, font=font,
-        #               fill=(255, 255, 255))
-        #     sleep(0.5)
+        g = Github(self.conf.get_github_user(), password=self.conf.get_github_password())
+        s = [slideLeft(repos(g), font), slideLeft(commits(g), font)]
         try:
             while self.alive:
-                img = s.draw()
+                img = s[0].draw()
                 if img is not None:
                     self.updateMatrix(img)
                 else:
                     self.matrix.Clear()
+                    temp = s.pop(0)
+                    temp.update()
+                    s.insert(len(s), temp)
         except KeyboardInterrupt:
             self.kill()
 

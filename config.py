@@ -7,3 +7,9 @@ class config():
 
     def off_target(self):
         return self.conf["off-target"] == "True"
+
+    def get_github_user(self):
+        return self.conf["github-user"]
+
+    def get_github_password(self):
+        return self.conf["github-password"]
