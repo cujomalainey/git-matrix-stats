@@ -39,7 +39,7 @@ class drawer():
     def main(self):
         self.image = Image.new('RGB', (128, 32))
         image = Image.open('resources/invertocat.png')
-        draw = ImageDraw.Draw(self.image)
+        draw = ImageDraw.Draw(image)
         font = ImageFont.load(os.path.dirname(os.path.realpath(__file__)) +
                               '/helvR08.pil')
         g = Github(self.conf.get_github_user(), password=self.conf.get_github_password())
